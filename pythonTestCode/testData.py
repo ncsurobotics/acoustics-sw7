@@ -32,7 +32,7 @@ def calcOrientation(tdoa):
     return (np.rad2deg(yaw), np.rad2deg(pitch))
     
 
-data = np.genfromtxt("../Waveforms/conf" + sys.argv[1] + "/Settings4/Test" + sys.argv[2] + ".csv", delimiter=",", skip_header=3)
+data = np.genfromtxt("../../Waveforms/conf" + sys.argv[1] + "/Settings4/Test" + sys.argv[2] + ".csv", delimiter=",", skip_header=3)
 #data = data[int(sys.argv[1]):int(sys.argv[2])]
 data = data[1100:1800]
 t = data[:, 0]
