@@ -1,8 +1,8 @@
 #importing the picomodule
-import pico_module as pm
+from pico_module import pm
 
 #importing the fft/toa calc code
-from fft import calcOrientation
+from pythonTestCode import calcOrientation
 
 #importing numpy
 import numpy as np
@@ -12,7 +12,7 @@ import time
 
 #import hub
 import seawolf as sw
-sw.loadConfig("../../../seawolf/conf/seawolf.conf");
+sw.loadConfig("../seawolf/conf/seawolf.conf");
 sw.init("Acoustics : Main");
 
 
