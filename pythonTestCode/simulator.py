@@ -1,23 +1,24 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
-v_sound = 1530
+v_sound = 1484
+
 f_s = 10e6
 f_pinger = 42e3
 
 
-left = np.array([-0.0095, 0, 0])
-right =  np.array([0.0095,0, 0.])
-front = np.array([0, -0.1, 0])
-back = np.array([0, -0.119, 0.0])
+left_top = np.array([-0.0125 * 2, .3, 0.0125 * 2])
+right_top =  np.array([0.0125 * 2, .3, 0.0125 * 2])
+left_bottom = np.array([-0.0125 * 2, .3, -0.0125 * 2])
+right_bottom = np.array([0.0125 * 2, .3, -0.0125 * 2])
 
-hydrophones = [left, right, front, back]
+hydrophones = [left_top, right_top, left_bottom, right_bottom]
 
 pinger_locs = np.array([[1.09, 1.03, 1.16],
                         [1.09, 0.54, 1.16],
                         [0.65, 1.16, 0.55],
                         [0.00, 0.98, 2.25],
-                        [10.0, -12.0, 10.0]])
+                        [1.00, 1.00, 10.00]])
 
 pinger_loc = pinger_locs[0]
 tdoas = []
@@ -27,8 +28,8 @@ def find_nearest(array,value):
     return (idx, array[idx])
 
 
-def calcTDOA(left=left, right=right, pinger=pinger_loc):
-    distance_left = np.linalg.norm(left - pinger)
+def calcTDOA(left=left_top, right=right_top, pinger=pinger_loc):
+    distance_left    = np.linalg.norm(left - pinger)
     distance_right = np.linalg.norm(right - pinger)
 
     t_left = distance_left / v_sound
@@ -40,7 +41,7 @@ def calcTOA(hydrophone, pinger):
     distance = np.linalg.norm(hydrophone - pinger)
     return distance / v_sound
 
-def rot(left=left, right=right, pinger_loc=pinger_loc):
+def rot(left=left_top, right=right_top, pinger_loc=pinger_loc):
     tdoas = []
     for yaw in np.arange(-180, 180):
         radians = np.deg2rad(yaw)
