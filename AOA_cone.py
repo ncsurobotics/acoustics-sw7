@@ -18,6 +18,8 @@ c2 = d2**2 / (hydrophone_spacing**2 - d2**2)
 # calculate yaw and pitch
 
 yaw = math.degrees(math.atan(math.sqrt((c1 + c1 * c2)/(1 - c1 * c2))))
+if d1 < 0:
+  yaw = -yaw
 pitch = 90 - math.degrees(math.atan(math.sqrt((c1 + 1)/(c2 + c1 * c2))))
 
 print("cone yaw: ", yaw)
